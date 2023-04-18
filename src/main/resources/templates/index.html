@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>INDEX</title>
 </head>
 <body>
 <h1>TEST</h1>
+<form th:action="@{'/additem'}" th:method="post">
+    <label>
+        NAME:
+    </label>
+    <label>
+        <input type="text" name="item_name">
+    </label>
+    <br>
+    <label>
+        PRICE:
+    </label>
+    <label>
+        <input type="number" name="item_price" min="0" max="1000000">
+    </label>
+    <br>
+    <button>ADD ITEM</button>
+</form>
+<hr>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>DETAILS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "item : ${items}">
+        <td th:text = "${item.getId()}"></td>
+        <td th:text = "${item.getName()}"></td>
+        <td th:text = "${item.getPrice()}"></td>
+        <td><a th:href="@{'/details/' + ${item.getId()}}">DETAILS</a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
