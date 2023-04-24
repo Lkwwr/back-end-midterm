@@ -19,6 +19,9 @@
     <label>
         <input type="number" name="item_price" min="0" max="1000000">
     </label>
+    <select name="country">
+        <option th:each="country : ${countries}" th:text="${country.getName()}" th:value="${country.getId()}"></option>
+    </select>
     <br>
     <button>ADD ITEM</button>
 </form>

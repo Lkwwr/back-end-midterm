@@ -1,8 +1,7 @@
 package kz.lkwwr.test.controllers;
 
-import kz.lkwwr.test.db.DBManager;
-import kz.lkwwr.test.db.Item;
 import kz.lkwwr.test.entities.Cars;
+import kz.lkwwr.test.entities.Countries;
 import kz.lkwwr.test.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +22,9 @@ public class HomeController {
     @GetMapping(value = "/")
     public String index(Model model) {
         List<Cars> cars = carService.getAllCars();
-
+        List<Countries> countries = carService.getAllCountries();
         model.addAttribute("cars", cars);
+        model.addAttribute("countries", countries);
 
         return "index";
     }
@@ -38,16 +38,12 @@ public class HomeController {
     public String addItem(@RequestParam(name = "item_name", defaultValue = "Error!") String name,
                           @RequestParam(name = "item_price", defaultValue = "0") int price) {
 
-        Item item = new Item(null, name, price);
-        DBManager.addItem(item);
 
         return "redirect:/";
     }
 
     @GetMapping(value = "/details/{id}")
     public String details(Model model, @PathVariable(name = "id") Long id){
-        Item item = DBManager.getItem(id);
-        model.addAttribute("item", item);
         return "details";
     }
 

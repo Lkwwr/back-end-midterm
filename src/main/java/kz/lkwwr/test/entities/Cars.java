@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 @Entity
 @Table(name = "cars")
 @Data
@@ -16,15 +18,21 @@ public class Cars {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "model")
+    @Column(name = "model", nullable = false)
     private String model;
 
-    @Column(name = "volume")
+    @Column(name = "volume", nullable = false)
     private double volume;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private int price;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private ArrayList<Transmissions> transmission;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Countries country;
 }
