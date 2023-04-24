@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cars {
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -31,8 +31,8 @@ public class Cars {
     private int price;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private ArrayList<Transmissions> transmission;
+    private ArrayList<Transmission> transmission;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Countries country;
+    private Country country;
 }

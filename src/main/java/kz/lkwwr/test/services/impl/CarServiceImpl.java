@@ -1,11 +1,11 @@
 package kz.lkwwr.test.services.impl;
 
-import kz.lkwwr.test.entities.Cars;
-import kz.lkwwr.test.entities.Countries;
-import kz.lkwwr.test.entities.Transmissions;
-import kz.lkwwr.test.repositories.CarsRepository;
-import kz.lkwwr.test.repositories.CountriesRepository;
-import kz.lkwwr.test.repositories.TransmissionsRepository;
+import kz.lkwwr.test.entities.Car;
+import kz.lkwwr.test.entities.Country;
+import kz.lkwwr.test.entities.Transmission;
+import kz.lkwwr.test.repositories.CarRepository;
+import kz.lkwwr.test.repositories.CountryRepository;
+import kz.lkwwr.test.repositories.TransmissionRepository;
 import kz.lkwwr.test.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,89 +16,89 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
 
     @Autowired
-    private CarsRepository carsRepository;
+    private CarRepository carRepository;
     @Autowired
-    private TransmissionsRepository transmissionsRepository;
+    private TransmissionRepository transmissionRepository;
     @Autowired
-    private CountriesRepository countriesRepository;
+    private CountryRepository countryRepository;
 
     @Override
-    public List<Cars> getAllCarsByName(String name) {
-        return carsRepository.findAllByName(name);
+    public List<Car> getAllCarsByName(String name) {
+        return carRepository.findAllByName(name);
     }
 
     @Override
-    public Cars addCar(Cars car) {
-        return carsRepository.save(car);
+    public Car addCar(Car car) {
+        return carRepository.save(car);
     }
 
     @Override
-    public List<Cars> getAllCars() {
-        return carsRepository.findAll();
+    public List<Car> getAllCars() {
+        return carRepository.findAll();
     }
 
     @Override
-    public Cars getCar(Long id) {
-        return carsRepository.getReferenceById(id);
+    public Car getCar(Long id) {
+        return carRepository.getReferenceById(id);
     }
 
     @Override
-    public void deleteItem(Cars car) {
-        carsRepository.delete(car);
+    public void deleteItem(Car car) {
+        carRepository.delete(car);
     }
 
     @Override
-    public Cars saveCar(Cars car) {
-        return carsRepository.save(car);
+    public Car saveCar(Car car) {
+        return carRepository.save(car);
     }
 
     @Override
-    public List<Transmissions> getAllTransmissions() {
-        return transmissionsRepository.findAll();
+    public List<Transmission> getAllTransmissions() {
+        return transmissionRepository.findAll();
     }
 
     @Override
-    public Transmissions addTransmission(Transmissions transmission) {
-        return transmissionsRepository.save(transmission);
+    public Transmission addTransmission(Transmission transmission) {
+        return transmissionRepository.save(transmission);
     }
 
     @Override
-    public Transmissions saveTransmission(Transmissions transmission) {
-        return transmissionsRepository.save(transmission);
+    public Transmission saveTransmission(Transmission transmission) {
+        return transmissionRepository.save(transmission);
     }
 
     @Override
-    public Transmissions getTransmission(Long id) {
-        return transmissionsRepository.getReferenceById(id);
+    public Transmission getTransmission(Long id) {
+        return transmissionRepository.getReferenceById(id);
     }
 
     @Override
-    public void deleteTransmission(Transmissions transmission) {
-        transmissionsRepository.delete(transmission);
+    public void deleteTransmission(Transmission transmission) {
+        transmissionRepository.delete(transmission);
     }
 
     @Override
-    public List<Countries> getAllCountries() {
-        return countriesRepository.findAll();
+    public List<Country> getAllCountries() {
+        return countryRepository.findAll();
     }
 
     @Override
-    public Countries addCountry(Countries country) {
-        return countriesRepository.save(country);
+    public Country addCountry(Country country) {
+        return countryRepository.save(country);
     }
 
     @Override
-    public Countries saveCountry(Countries country) {
-        return countriesRepository.save(country);
+    public Country saveCountry(Country country) {
+        return countryRepository.save(country);
     }
 
     @Override
-    public Countries getCountry(Long id) {
-        return countriesRepository.getReferenceById(id);
+    public Country getCountry(Long id) {
+        return countryRepository.getReferenceById(id);
     }
 
     @Override
-    public void deleteCountry(Countries country) {
-        countriesRepository.delete(country);
+    public void deleteCountry(Country country) {
+        countryRepository.delete(country);
     }
 }
