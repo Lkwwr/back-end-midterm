@@ -1,12 +1,12 @@
-package kz.lkwwr.test.services.impl;
+package kz.lkwwr.midterm.services.impl;
 
-import kz.lkwwr.test.entities.Car;
-import kz.lkwwr.test.entities.Country;
-import kz.lkwwr.test.entities.Transmission;
-import kz.lkwwr.test.repositories.CarRepository;
-import kz.lkwwr.test.repositories.CountryRepository;
-import kz.lkwwr.test.repositories.TransmissionRepository;
-import kz.lkwwr.test.services.CarService;
+import kz.lkwwr.midterm.entities.Car;
+import kz.lkwwr.midterm.entities.Country;
+import kz.lkwwr.midterm.entities.Transmission;
+import kz.lkwwr.midterm.repositories.CarRepository;
+import kz.lkwwr.midterm.repositories.CountryRepository;
+import kz.lkwwr.midterm.repositories.TransmissionRepository;
+import kz.lkwwr.midterm.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,6 @@ import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
-
     @Autowired
     private CarRepository carRepository;
     @Autowired

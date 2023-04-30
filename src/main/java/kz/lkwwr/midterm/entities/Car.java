@@ -1,4 +1,4 @@
-package kz.lkwwr.test.entities;
+package kz.lkwwr.midterm.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
