@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Lkw.wr's Garage</title>
-    <link href="../static/styles/register.css" rel="stylesheet">
-    <link href="../static/styles/main.css" rel="stylesheet">
+    <link th:href="@{../static/styles/register.css}" rel="stylesheet">
+    <link th:href="@{../static/styles/main.css}" rel="stylesheet">
 </head>
 <body>
 <nav>
@@ -13,22 +13,27 @@
 <main>
     <div class="register">
         <h2>REGISTRATION</h2>
-        <form method="post" th:action="@{/register}">
+        <form method="post" th:action="@{/register}" th:object="${user}">
             <div>
                 <label>First Name</label>
-                <input name="firstName" placeholder="Enter first name" type="text"/>
+                <p th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></p>
+                <input name="firstName" placeholder="Enter first name" type="text" th:field="*{firstName}"/>
             </div>
             <div>
                 <label>Last Name</label>
-                <input name="lastName" placeholder="Enter last name" type="text"/>
+                <p th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></p>
+                <input name="lastName" placeholder="Enter last name" type="text" th:field="*{lastName}"/>
             </div>
             <div>
-                <label>Email</label><p th:if="${param.error}">*email is already taken!</p>
-                <input name="email" placeholder="Enter email address" type="email"/>
+                <label>Email</label>
+                <p th:if="${param.error}">*email is already taken!</p>
+                <p th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></p>
+                <input name="email" placeholder="Enter email address" type="email" th:field="*{email}"/>
             </div>
             <div>
                 <label>Password</label>
-                <input name="password" placeholder="Enter password" type="password"/>
+                <p th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></p>
+                <input name="password" placeholder="Enter password" type="password" th:field="*{password}"/>
             </div>
             <div class="submit">
                 <button type="submit">Register</button>

@@ -22,35 +22,39 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String showLogin() {
         return "login";
     }
 
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
+    public String showRegister(Model model) {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return "register";
     }
 
     @PostMapping("/register")
-    public String registration(@Valid @ModelAttribute("user") UserDto userDto,
-                               BindingResult result,
-                               Model model) {
+    public String register(@Valid @ModelAttribute("user") UserDto userDto,
+                           BindingResult result,
+                           Model model) {
         User existingUser = userService.findUserByEmail(userDto.getEmail());
 
         if (existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
-            result.rejectValue("email", null,
-                    "There is already an account registered with the same email");
+            return "redirect:/register?error";
         }
 
         if (result.hasErrors()) {
             model.addAttribute("user", userDto);
-            return "/register";
+            return "register";
         }
 
         userService.saveUser(userDto);
-        return "redirect:/register?success";
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "home";
     }
 
     @GetMapping("/users")

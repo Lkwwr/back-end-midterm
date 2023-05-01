@@ -26,23 +26,21 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()
-                                .requestMatchers("/static/**").permitAll()
-                                .requestMatchers("/users").hasAuthority("ROLE_ADMIN")
-                ).formLogin(
-                        form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/users")
-                                .permitAll()
-                ).logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .permitAll()
-                );
+        http
+                .authorizeHttpRequests()
+                .requestMatchers("/static/**").permitAll()
+                .requestMatchers("/register").permitAll()
+                .requestMatchers("/login").permitAll()
+                .requestMatchers("/home").permitAll()
+                .requestMatchers("/users").hasAuthority("ROLE_ADMIN")
+                .and()
+                .formLogin().loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/home", true)
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .permitAll();
         return http.build();
     }
 
