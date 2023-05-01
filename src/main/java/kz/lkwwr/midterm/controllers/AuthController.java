@@ -21,11 +21,6 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("/index")
-    public String home() {
-        return "index";
-    }
-
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -38,7 +33,7 @@ public class AuthController {
         return "register";
     }
 
-    @PostMapping("/register/save")
+    @PostMapping("/register")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model) {
