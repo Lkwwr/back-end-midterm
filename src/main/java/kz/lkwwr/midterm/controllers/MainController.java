@@ -3,6 +3,8 @@ package kz.lkwwr.midterm.controllers;
 import jakarta.validation.Valid;
 import kz.lkwwr.midterm.dto.UserDto;
 import kz.lkwwr.midterm.entities.Car;
+import kz.lkwwr.midterm.entities.Country;
+import kz.lkwwr.midterm.entities.Type;
 import kz.lkwwr.midterm.entities.User;
 import kz.lkwwr.midterm.services.CarService;
 import kz.lkwwr.midterm.services.UserService;
@@ -12,16 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
 @Controller
-public class AuthController {
+public class MainController {
     @Autowired
     private UserService userService;
     @Autowired
     private CarService carService;
+    private User currentUser;
 
     @GetMapping("/login")
     public String showLogin() {
@@ -51,20 +55,46 @@ public class AuthController {
         }
 
         userService.saveUser(userDto);
+        currentUser = userService.findUserByEmail(userDto.getEmail());
         return "redirect:/home";
     }
 
     @GetMapping("/home")
-    public String home(Model model) {
-        List<Car> cars = carService.getAllCars();
-        model.addAttribute("cars", cars);
+    public String showHome() {
         return "home";
     }
 
+    @GetMapping("/cars")
+    public String showCars(Model model) {
+        List<Car> cars = carService.getAllCars();
+        model.addAttribute("cars", cars);
+
+        List<Country> countries = carService.getAllCountries();
+        model.addAttribute("countries", countries);
+
+        List<Type> types = carService.getAllTypes();
+        model.addAttribute("types", types);
+
+        return "cars";
+    }
+
+    @GetMapping("/about")
+    public String showAbout() {
+        return "about";
+    }
+
     @GetMapping("/users")
-    public String users(Model model) {
+    public String getUsers(Model model) {
         List<UserDto> users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "users";
+    }
+
+    @GetMapping("/user/{id}")
+    public String getUser(@PathVariable(name = "id") Long id,
+                          Model model) {
+        User user = userService.getUser(id);
+        model.addAttribute("users", user);
+        return "user";
     }
 }

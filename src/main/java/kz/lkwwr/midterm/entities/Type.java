@@ -6,11 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "transmissions")
+@Table(name = "types")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transmission {
+public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,7 +18,4 @@ public class Transmission {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "gears", nullable = false)
-    private int gears;
 }

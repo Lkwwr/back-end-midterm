@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lkw.wr's Garage</title>
+    <link th:href="@{../static/styles/cars.css}" rel="stylesheet">
+    <link th:href="@{../static/styles/main.css}" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <a th:href="@{/home}"><b>Lkw.wr's Garage</b></a>
+    <span>
+        <a th:href="@{/cars}"><b>Our Cars</b></a>
+        <a th:href="@{/about}"><b>About</b></a>
+        <a th:href="@{/login}"><b>Login</b></a>
+    </span>
+</nav>
+<main>
+    <h1>OUR CARS:</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>IMAGE</th>
+            <th>BRAND</th>
+            <th>MODEL</th>
+            <th>VOLUME</th>
+            <th>TYPE</th>
+            <th>MAN. COUNTRY</th>
+            <th>PRICE</th>
+            <th>DETAILS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car: ${cars}">
+            <td>PHOTO</td>
+            <td th:text="${car.getName()}"></td>
+            <td th:text="${car.getModel()}"></td>
+            <td th:text="${car.getVolume()}"></td>
+            <td th:text="${car.getType().getName()}"></td>
+            <td th:text="${car.getCountry().getName()}"></td>
+            <td th:text="${car.getPrice()}"></td>
+            <td><a th:href="@{'/admin/car/' + ${car.getId()}}">DETAILS</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <h1>ADD CAR</h1>
+    <form th:action="@{/admin/save-car}" method="post">
+        <label>PHOTO:</label>
+        <input type="text" name="photo">
+        <label>NAME:</label>
+        <input type="text" name="name" required>
+        <label>MODEL:</label>
+        <input type="text" name="model" required>
+        <label>VOLUME:</label>
+        <input type="number" step="0.1" name="volume" required>
+        <label>TYPE:</label>
+        <select name="type" required>
+            <option th:each="type: ${types}" th:text="${type.getName()}" th:value="${type.getId()}"></option>
+        </select>
+        <label>COUNTRY:</label>
+        <select name="country" required>
+            <option th:each="country : ${countries}" th:text="${country.getName()}" th:value="${country.getId()}"></option>
+        </select>
+        <label>PRICE:</label>
+        <input type="number" min="0" max="100000000" name="price" required>
+        <button>ADD CAR</button>
+    </form>
+</main>
+
+</body>
+</html>

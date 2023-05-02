@@ -3,44 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Lkw.wr's Garage</title>
-    <link href="../static/styles/home.css" rel="stylesheet">
-    <link href="../static/styles/main.css" rel="stylesheet">
+    <link th:href="@{../static/styles/main.css}" rel="stylesheet">
 </head>
 <body>
 <nav>
-    <a th:href="@{/index}"><b>Lkw.wr's Garage</b></a>
+    <a th:href="@{/home}"><b>Lkw.wr's Garage</b></a>
     <span>
+        <a th:href="@{/cars}"><b>Our Cars</b></a>
         <a th:href="@{/about}"><b>About</b></a>
         <a th:href="@{/login}"><b>Login</b></a>
     </span>
 </nav>
-<main>
-    <h1>OUR CARS:</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>IMAGE</th>
-            <th>BRAND</th>
-            <th>MODEL</th>
-            <th>VOLUME</th>
-            <th>TRANSMISSION</th>
-            <th>COUNTRY</th>
-            <th>PRICE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="car: ${cars}">
-            <td>PHOTO</td>
-            <td th:text="${car.getName()}"></td>
-            <td th:text="${car.getModel()}"></td>
-            <td th:text="${car.getVolume()}"></td>
-            <td th:text="${car.getTransmission()}"></td>
-            <td th:text="${car.getCountry()}"></td>
-            <td th:text="${car.getPrice()}"></td>
-        </tr>
-        </tbody>
-    </table>
-</main>
-
 </body>
 </html>

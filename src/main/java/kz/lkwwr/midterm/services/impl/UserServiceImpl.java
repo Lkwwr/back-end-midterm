@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -32,13 +33,17 @@ public class UserServiceImpl implements UserService {
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+    @Override
+    public User getUser(Long id) {
+        return userRepository.getReferenceById(id);
+    }
 
     @Override
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
         List<UserDto> userDto = new ArrayList<>();
         for(User user : users) {
-            userDto.add(new UserDto(null, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword()));
+            userDto.add(new UserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword()));
         }
         return userDto;
     }

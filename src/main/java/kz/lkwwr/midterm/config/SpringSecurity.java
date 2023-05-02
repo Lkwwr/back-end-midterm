@@ -28,10 +28,7 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/static/**").permitAll()
-                .requestMatchers("/register").permitAll()
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/home").permitAll()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .and()
                 .formLogin().loginPage("/login")

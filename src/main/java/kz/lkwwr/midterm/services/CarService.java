@@ -2,7 +2,7 @@ package kz.lkwwr.midterm.services;
 
 import kz.lkwwr.midterm.entities.Car;
 import kz.lkwwr.midterm.entities.Country;
-import kz.lkwwr.midterm.entities.Transmission;
+import kz.lkwwr.midterm.entities.Type;
 
 import java.util.List;
 
@@ -17,24 +17,11 @@ public interface CarService {
 
     Car saveCar(Car car);
 
-    List<Transmission> getAllTransmissions();
+    List<Type> getAllTypes();
 
-    Transmission addTransmission(Transmission transmission);
-
-    Transmission saveTransmission(Transmission transmission);
-
-    Transmission getTransmission(Long id);
-
-    void deleteTransmission(Transmission transmission);
+    Type getType(Long id);
 
     List<Country> getAllCountries();
 
-    Country addCountry(Country country);
-
-    Country saveCountry(Country country);
-
     Country getCountry(Long id);
-
-    void deleteCountry(Country country);
-
 }

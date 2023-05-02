@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 
 @Entity
 @Table(name = "cars")
@@ -30,8 +29,8 @@ public class Car {
     @Column(name = "price", nullable = false)
     private int price;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private ArrayList<Transmission> transmission;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Country country;
