@@ -1,0 +1,33 @@
+h1 {
+    margin: 5vh auto;
+    width: fit-content;
+}
+
+table {
+    margin: 5vh auto;
+    width: 95%;
+    border-spacing: 0 10px;
+    font-weight: bold;
+}
+th {
+    padding: 10px 20px;
+    background: #000000;
+    color: #ffffff;
+    border-right: 2px solid;
+    font-size: 0.9em;
+}
+th:last-child {
+    border-right: none;
+}
+td {
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    border-right: 2px solid #000000;
+}
+td:first-child {
+    border-left: 2px solid #000000;
+}

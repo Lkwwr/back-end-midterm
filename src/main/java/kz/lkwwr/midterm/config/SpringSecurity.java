@@ -32,7 +32,7 @@ public class SpringSecurity {
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/home").permitAll()
-                .requestMatchers("/users").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .and()
                 .formLogin().loginPage("/login")
                 .loginProcessingUrl("/login")

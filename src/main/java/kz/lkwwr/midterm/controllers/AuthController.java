@@ -2,8 +2,11 @@ package kz.lkwwr.midterm.controllers;
 
 import jakarta.validation.Valid;
 import kz.lkwwr.midterm.dto.UserDto;
+import kz.lkwwr.midterm.entities.Car;
 import kz.lkwwr.midterm.entities.User;
+import kz.lkwwr.midterm.services.CarService;
 import kz.lkwwr.midterm.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,11 +18,10 @@ import java.util.List;
 
 @Controller
 public class AuthController {
+    @Autowired
     private UserService userService;
-
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private CarService carService;
 
     @GetMapping("/login")
     public String showLogin() {
@@ -53,7 +55,9 @@ public class AuthController {
     }
 
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model) {
+        List<Car> cars = carService.getAllCars();
+        model.addAttribute("cars", cars);
         return "home";
     }
 

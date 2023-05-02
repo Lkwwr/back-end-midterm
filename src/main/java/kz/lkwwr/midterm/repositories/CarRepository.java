@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 @Transactional
 public interface CarRepository extends JpaRepository<Car, Long> {
-    List<Car> findAllByName(String name);
 }

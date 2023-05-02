@@ -22,11 +22,6 @@ public class CarServiceImpl implements CarService {
     private CountryRepository countryRepository;
 
     @Override
-    public List<Car> getAllCarsByName(String name) {
-        return carRepository.findAllByName(name);
-    }
-
-    @Override
     public Car addCar(Car car) {
         return carRepository.save(car);
     }
@@ -42,7 +37,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteItem(Car car) {
+    public void deleteCar(Car car) {
         carRepository.delete(car);
     }
 

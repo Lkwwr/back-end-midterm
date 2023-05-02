@@ -13,11 +13,9 @@ public interface CarService {
 
     Car getCar(Long id);
 
-    void deleteItem(Car car);
+    void deleteCar(Car car);
 
     Car saveCar(Car car);
-
-    List<Car> getAllCarsByName(String name);
 
     List<Transmission> getAllTransmissions();
 
