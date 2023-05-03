@@ -6,7 +6,9 @@ import kz.lkwwr.midterm.entities.User;
 import java.util.List;
 
 public interface UserService {
-    void saveUser(UserDto userDto);
+    void saveUserDto(UserDto userDto);
+
+    User saveUser(User user);
 
     User findUserByEmail(String email);
 

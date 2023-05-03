@@ -1,20 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lkw.wr's Garage</title>
+    <link th:href="@{../static/styles/about.css}" rel="stylesheet">
+    <link th:href="@{../static/styles/main.css}" rel="stylesheet">
 </head>
 <body>
 <nav>
     <a th:href="@{/home}"><b>Lkw.wr's Garage</b></a>
     <span>
         <a th:href="@{/cars}"><b>Our Cars</b></a>
+        <a th:if="${currentUser!=null && currentUser.getRole().equals('ADMIN')}" th:href="@{/users}"><b>Users</b></a>
         <a th:href="@{/about}"><b>About</b></a>
-        <a th:href="@{/login}"><b>Login</b></a>
+        <a th:if="${currentUser!=null}" th:href="@{'/user/' + ${currentUser.getId()}}"><b>Profile</b></a>
+        <a th:if="${currentUser==null}" th:href="@{/login}"><b>Login</b></a>
+        <a th:if="${currentUser!=null}" th:href="@{/logout}"><b>Logout</b></a>
     </span>
 </nav>
 <main>
     <h1>ABOUT</h1>
+    <div class="pics">
+        <img src="../static/images/IMG_3648.jpg" width="30%">
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue nisl ac urna gravida ultricies. Fusce
+        ullamcorper vehicula viverra. Proin mattis velit eget augue mattis vulputate. Pellentesque in accumsan ligula,
+        in varius erat. Pellentesque viverra mi vel dui ultrices ornare. Ut sit amet dui quis lectus porta pulvinar.
+        Nullam neque nibh, commodo quis hendrerit et, tincidunt ac ipsum. Mauris id nulla sed ipsum maximus pellentesque
+        nec ut lorem. Pellentesque eu eleifend nisl. Vivamus auctor turpis et magna varius, et lobortis tortor
+        malesuada.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue nisl ac urna gravida ultricies. Fusce
+        ullamcorper vehicula viverra. Proin mattis velit eget augue mattis vulputate. Pellentesque in accumsan ligula,
+        in varius erat. Pellentesque viverra mi vel dui ultrices ornare. Ut sit amet dui quis lectus porta pulvinar.
+        Nullam neque nibh, commodo quis hendrerit et, tincidunt ac ipsum. Mauris id nulla sed ipsum maximus pellentesque
+        nec ut lorem. Pellentesque eu eleifend nisl. Vivamus auctor turpis et magna varius, et lobortis tortor
+        malesuada.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue nisl ac urna gravida ultricies. Fusce
+        ullamcorper vehicula viverra. Proin mattis velit eget augue mattis vulputate. Pellentesque in accumsan ligula,
+        in varius erat. Pellentesque viverra mi vel dui ultrices ornare. Ut sit amet dui quis lectus porta pulvinar.
+        Nullam neque nibh, commodo quis hendrerit et, tincidunt ac ipsum. Mauris id nulla sed ipsum maximus pellentesque
+        nec ut lorem. Pellentesque eu eleifend nisl. Vivamus auctor turpis et magna varius, et lobortis tortor
+        malesuada.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue nisl ac urna gravida ultricies. Fusce
+        ullamcorper vehicula viverra. Proin mattis velit eget augue mattis vulputate. Pellentesque in accumsan ligula,
+        in varius erat. Pellentesque viverra mi vel dui ultrices ornare. Ut sit amet dui quis lectus porta pulvinar.
+        Nullam neque nibh, commodo quis hendrerit et, tincidunt ac ipsum. Mauris id nulla sed ipsum maximus pellentesque
+        nec ut lorem. Pellentesque eu eleifend nisl. Vivamus auctor turpis et magna varius, et lobortis tortor
+        malesuada.</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue nisl ac urna gravida ultricies. Fusce
         ullamcorper vehicula viverra. Proin mattis velit eget augue mattis vulputate. Pellentesque in accumsan ligula,
         in varius erat. Pellentesque viverra mi vel dui ultrices ornare. Ut sit amet dui quis lectus porta pulvinar.

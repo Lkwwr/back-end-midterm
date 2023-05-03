@@ -1,0 +1,15 @@
+h1 {
+    width: fit-content;
+    margin: 5vh auto;
+}
+
+.pics {
+    text-align: center;
+    margin: auto;
+}
+
+p {
+    width: 70%;
+    margin: 1vh auto;
+    text-indent: 5%;
+}

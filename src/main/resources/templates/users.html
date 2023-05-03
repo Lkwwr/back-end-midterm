@@ -12,6 +12,8 @@
     <span>
         <a th:href="@{/cars}"><b>Our Cars</b></a>
         <a th:href="@{/users}"><b>Users</b></a>
+        <a th:href="@{/about}"><b>About</b></a>
+        <a th:href="@{'/user/' + ${currentUser.getId()}}"><b>Profile</b></a>
         <a th:href="@{/logout}"><b>Logout</b></a>
     </span>
 </nav>
@@ -37,7 +39,7 @@
                 <td>
                     <form th:action="@{/admin/delete-user}" method="post"><input type="hidden" name="id"
                                                                                  th:value="${user.getId()}"/>
-                        <button>DELETE</button>
+                        <button><b>DELETE</b></button>
                     </form>
                 </td>
             </tr>

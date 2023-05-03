@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lkw.wr's Garage</title>
-    <link href="../static/styles/user.css" rel="stylesheet">
-    <link href="../static/styles/main.css" rel="stylesheet">
+    <link th:href="@{../static/styles/user.css}" rel="stylesheet">
+    <link th:href="@{../static/styles/main.css}" rel="stylesheet">
 </head>
 <body>
 <nav>
     <a th:href="@{/home}"><b>Lkw.wr's Garage</b></a>
-    <a th:href="@{/login}" sec:authorize="isAnonymous()"><b>Logout</b></a>
+    <span>
+        <a th:href="@{/cars}"><b>Our Cars</b></a>
+        <a th:if="${currentUser!=null && currentUser.getRole().equals('ADMIN')}" th:href="@{/users}"><b>Users</b></a>
+        <a th:href="@{/about}"><b>About</b></a>
+        <a th:if="${currentUser!=null}" th:href="@{'/user/' + ${currentUser.getId()}}"><b>Profile</b></a>
+        <a th:if="${currentUser==null}" th:href="@{/login}"><b>Login</b></a>
+        <a th:if="${currentUser!=null}" th:href="@{/logout}"><b>Logout</b></a>
+    </span>
 </nav>
+<main>
+    <div class="forms">
+        <form th:action="@{/save-user}" method="post">
+            <h1>PROFILE</h1>
+            <input type="hidden" name="id" th:value="${user.getId()}">
+            <label>FIRST NAME:</label>
+            <input type="text" name="first-name" th:value="${user.getFirstName()}" required>
+            <label>LAST NAME:</label>
+            <input type="text" name="last-name" th:value="${user.getLastName()}" required>
+            <label>EMAIL:</label>
+            <input type="email" name="email" th:value="${user.getEmail()}" required>
+            <label>PASSWORD:</label>
+            <input type="password" name="password" required>
+            <button th:if="${currentUser!=null && currentUser.getId()==id}" th:action="@{/delete-user}">SAVE CHANGES</button>
+        </form>
+        <form th:if="${currentUser!=null && currentUser.getId()==id}" th:action="@{/delete-user}" method="post">
+            <input type="hidden" name="id" th:value="${user.getId()}">
+            <button>DELETE PROFILE</button>
+        </form>
+    </div>
+</main>
 </body>
 </html>
