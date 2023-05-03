@@ -20,7 +20,6 @@
     <table>
         <thead>
         <tr>
-            <th>IMAGE</th>
             <th>BRAND</th>
             <th>MODEL</th>
             <th>VOLUME</th>
@@ -32,7 +31,6 @@
         </thead>
         <tbody>
         <tr th:each="car: ${cars}">
-            <td>PHOTO</td>
             <td th:text="${car.getName()}"></td>
             <td th:text="${car.getModel()}"></td>
             <td th:text="${car.getVolume()}"></td>
@@ -43,16 +41,14 @@
         </tr>
         </tbody>
     </table>
-    <h1>ADD CAR</h1>
-    <form th:action="@{/admin/save-car}" method="post">
-        <label>PHOTO:</label>
-        <input type="text" name="photo">
+    <form th:action="@{/admin/add-car}" method="post">
+        <h1>ADD CAR</h1>
         <label>NAME:</label>
         <input type="text" name="name" required>
         <label>MODEL:</label>
         <input type="text" name="model" required>
         <label>VOLUME:</label>
-        <input type="number" step="0.1" name="volume" required>
+        <input type="number" step="0.1" name="volume" min="0" max="15" required>
         <label>TYPE:</label>
         <select name="type" required>
             <option th:each="type: ${types}" th:text="${type.getName()}" th:value="${type.getId()}"></option>

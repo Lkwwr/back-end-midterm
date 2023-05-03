@@ -26,7 +26,7 @@ public class AdminController {
         return "redirect:/users";
     }
 
-    @PostMapping("/save-car")
+    @PostMapping("/add-car")
     public String addCar(@RequestParam(name = "name") String name,
                          @RequestParam(name = "model") String model,
                          @RequestParam(name = "volume") double volume,

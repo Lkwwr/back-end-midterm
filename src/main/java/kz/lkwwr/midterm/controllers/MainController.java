@@ -9,6 +9,7 @@ import kz.lkwwr.midterm.entities.User;
 import kz.lkwwr.midterm.services.CarService;
 import kz.lkwwr.midterm.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,7 +26,6 @@ public class MainController {
     private UserService userService;
     @Autowired
     private CarService carService;
-    private User currentUser;
 
     @GetMapping("/login")
     public String showLogin() {
@@ -55,12 +55,12 @@ public class MainController {
         }
 
         userService.saveUser(userDto);
-        currentUser = userService.findUserByEmail(userDto.getEmail());
         return "redirect:/home";
     }
 
     @GetMapping("/home")
-    public String showHome() {
+    public String showHome(Authentication authentication) {
+        System.out.println(authentication);
         return "home";
     }
 
