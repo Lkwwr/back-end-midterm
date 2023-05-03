@@ -27,7 +27,7 @@
             <input type="text" name="first-name" th:value="${user.getFirstName()}" required>
             <label>LAST NAME:</label>
             <input type="text" name="last-name" th:value="${user.getLastName()}" required>
-            <label>EMAIL:</label>
+            <label>EMAIL:</label><p th:if="${param.error}">*email is already taken!</p>
             <input type="email" name="email" th:value="${user.getEmail()}" required>
             <label>PASSWORD:</label>
             <input type="password" name="password" required>

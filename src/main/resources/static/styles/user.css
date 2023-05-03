@@ -39,3 +39,10 @@ h1 {
     margin: auto;
     width: fit-content;
 }
+
+p {
+    margin: 0;
+    text-align: left;
+    color: red;
+    font-size: 18px;
+}

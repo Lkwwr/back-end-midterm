@@ -132,6 +132,11 @@ public class MainController {
                            @RequestParam(name = "last-name") String lastName,
                            @RequestParam(name = "email") String email,
                            @RequestParam(name = "password") String password) {
+
+        User existingUser = userService.findUserByEmail(email);
+
+        if (existingUser != null) return "redirect:/user/" + id + "?error";
+
         User user = userService.getUser(id);
 
         user.setFirstName(firstName);
